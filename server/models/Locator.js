@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const locatorSchema = new Schema({
-  username: { type: String, required: true},
-  lastName: { type: String, required: true},
-  company: { type: String, required: true},
-  email: { type: String, required: true},
-  phone: { type: String, required: true},
-  password: { type: String, required: true},
-  city: { type: String, required: true},
-  about: { type: String, required: true},
+  username: { type: String, required: [true, 'Name is required'] },
+  lastName: { type: String, required: [true, 'Last Name is required'] },
+  company: { type: String },
+  email: { type: String, required: [true, 'email is required'] },
+  phone: { type: String, required: [true, 'phone is required']},
+  password: { type: String, required: [true, 'Password is required']},
+  city: { type: String, required: [true, 'City is required']},
+  about: { type: String },
   picture: { type: String },
   places: [{type:Schema.Types.ObjectId, ref:'Place'}],
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],

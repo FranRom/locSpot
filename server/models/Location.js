@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const locationSchema = new Schema({
-  title: { type: String, required: true},
+  title: { type: String, required: [true, 'Title is required']},
   position: { type:{ lat: Number,
             lon: Number },
-            required: true },
-  city: { type: String, required: true},
-  description: { type: String, required: true},
+            required: [true, 'Location is required'] },
+  city: { type: String, required: [true, 'City is required']},
+  description: { type: String },
   pictures: [{ img: String }],
   tags: [{ type: String }],
   type: {type: String, enum: ['Inside', 'Outside']},

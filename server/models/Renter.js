@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const renterSchema = new Schema({
-  username: { type: String, required: true},
-  lastName: { type: String, required: true},
-  email: { type: String, required: true},
-  phone: { type: String, required: true},
-  password: { type: String, required: true},
-  city: { type: String, required: true},
-  about: { type: String, required: true},
+  username: { type: String, required: [true, 'Name is required'] },
+  lastName: { type: String, required: [true, 'Last Name is required'] },
+  email: { type: String, required: [true, 'email is required'] },
+  phone: { type: String, required: [true, 'Phone is required'] },
+  password: { type: String, required: [true, 'Password is required'] },
+  city: { type: String, required: [true, 'City is required'] },
+  about: { type: String },
   picture: { type: String },
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],
 }, {
