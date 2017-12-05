@@ -5,7 +5,9 @@ const Locator = require('../models/Locator');
 const Renter = require('../models/Renter');
 const authRoutes = express.Router();
 
+
 authRoutes.post('/signup', (req, res, next) => {
+  //añadir campos que requiero del usuario
   const {username, password} = req.body;
 
   if (!username || !password) {
@@ -29,6 +31,7 @@ authRoutes.post('/signup', (req, res, next) => {
     });
     return theUser.save();
   })
+
   .then(newUser => {
     console.log(newUser);
     req.login(newUser, (err) => {
