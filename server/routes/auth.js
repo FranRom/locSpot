@@ -1,14 +1,13 @@
 const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
-const Locator = require('../models/Locator');
-const Renter = require('../models/Renter');
+const User = require('../models/User');
 const authRoutes = express.Router();
 
 
 authRoutes.post('/signup', (req, res, next) => {
   //añadir campos que requiero del usuario
-  const {username, password} = req.body;
+  const {username, lastname, email, phone, password, city} = req.body;
 
   if (!username || !password) {
     res.status(400).json({ message: 'Provide username and password' });

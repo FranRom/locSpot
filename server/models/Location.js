@@ -10,6 +10,8 @@ const locationSchema = new Schema({
   description: { type: String },
   pictures: [{ img: String }],
   tags: [{ type: String }],
+  availability: { type: String, required: [true, 'Availability is required']},
+  price: { type: String, required: [true, 'Price is required']},
   type: {type: String, enum: ['Inside', 'Outside']},
   activity: {type: String, enum: ['Photo', 'Recording', 'Event']},
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],
