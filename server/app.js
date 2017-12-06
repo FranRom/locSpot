@@ -12,8 +12,8 @@ const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 const app = express();
 
-mongoose.connect(process.env.DBURL).then(() =>{
-  console.log(`Connected to DB: ${process.env.DBURL}`);
+mongoose.connect(process.env.DB_URL).then(() =>{
+  console.log(`Connected to DB: ${process.env.DB_URL}`);
 });
 
 

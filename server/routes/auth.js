@@ -6,8 +6,10 @@ const authRoutes = express.Router();
 
 
 authRoutes.post('/signup', (req, res, next) => {
+  console.log("ENTRO");
   //añadir campos que requiero del usuario
   const {username, lastname, email, phone, password, city} = req.body;
+  console.log({username, lastname, email, phone, password, city});
 
   if (!username || !password) {
     res.status(400).json({ message: 'Provide username and password' });
@@ -26,7 +28,12 @@ authRoutes.post('/signup', (req, res, next) => {
 
     const theUser = new User({
       username,
-      password: hashPass
+      lastname,
+      password: hashPass,
+      email,
+      phone,
+      city
+
     });
     return theUser.save();
   })
