@@ -9,13 +9,13 @@ const mongoose = require('mongoose');
 const auth = require('./routes/auth');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const apiFor = require('./routes/api');
 const cors = require('cors');
 const app = express();
 
 mongoose.connect(process.env.DB_URL).then(() =>{
   console.log(`Connected to DB: ${process.env.DB_URL}`);
 });
-
 
 var whitelist = [
     'http://localhost:4200',
@@ -48,6 +48,9 @@ app.use(session({
 require('./passport')(app);
 
 app.use('/api/auth', auth);
+app.use('/api/user', apiFor(require('./models/User')));
+app.use('/api/review', apiFor(require('./models/Review')));
+app.use('/api/location', apiFor(require('./models/Location')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -3,9 +3,6 @@ const Schema   = mongoose.Schema;
 
 const locationSchema = new Schema({
   title: { type: String, required: [true, 'Title is required']},
-  position: { type:{ lat: Number,
-            lon: Number },
-            required: [true, 'Location is required'] },
   city: { type: String, required: [true, 'City is required']},
   description: { type: String },
   pictures: [{ img: String }],

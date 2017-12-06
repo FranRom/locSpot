@@ -11,6 +11,8 @@ const userSchema = new Schema({
   about: { type: String },
   picture: { type: String },
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],
+  locations: [{type:Schema.Types.ObjectId, ref:'Location'}],
+  role: {type: String, enum: ['Locator', 'Client']},
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });

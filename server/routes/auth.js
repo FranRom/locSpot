@@ -6,10 +6,7 @@ const authRoutes = express.Router();
 
 
 authRoutes.post('/signup', (req, res, next) => {
-  console.log("ENTRO");
-  //añadir campos que requiero del usuario
   const {username, lastname, email, phone, password, city} = req.body;
-  console.log({username, lastname, email, phone, password, city});
 
   if (!username || !password) {
     res.status(400).json({ message: 'Provide username and password' });
@@ -23,7 +20,7 @@ authRoutes.post('/signup', (req, res, next) => {
       return;
     }
 
-    const salt     = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
 
     const theUser = new User({
@@ -33,7 +30,6 @@ authRoutes.post('/signup', (req, res, next) => {
       email,
       phone,
       city
-
     });
     return theUser.save();
   })

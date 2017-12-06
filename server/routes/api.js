@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const _ = require('lodash');
-//tengo que instalar lodash
+
 
 const checkIDParam = (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -12,11 +12,9 @@ const checkIDParam = (req, res, next) => {
   next();
 };
 
-
 const simpleCRUD = (Model) => {
 
   const model_properties = _.remove(Object.keys(Model.schema.paths), k=> !['_id','__v','created_at','updated_at'].includes(k));
-  console.log(model_properties);
 
   const router = express.Router();
   /* List all elements from #{model} */
@@ -25,7 +23,6 @@ const simpleCRUD = (Model) => {
       .then(list => res.json(list))
       .catch(e => res.json(e));
   });
-
 
   /* Create a new #{model} */
   router.post('/', (req, res, next) => {
@@ -46,9 +43,10 @@ const simpleCRUD = (Model) => {
   });
 
   /* EDIT a Model. */
-  router.put('/:id', checkIDParam, (req, res) => {
+  router.post('/:id', checkIDParam, (req, res) => {
     const updates = _.pick(req.body, model_properties);
-    Model.findByIdAndUpdate(req.params.id, {
+    console.log(updates);
+    Model.findByIdAndUpdate(req.params.id, updates, {
         new: true
       })
       .then(o => res.json(o))
