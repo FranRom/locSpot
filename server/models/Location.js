@@ -12,6 +12,7 @@ const locationSchema = new Schema({
   type: {type: String, enum: ['Inside', 'Outside']},
   activity: {type: String, enum: ['Photo', 'Recording', 'Event']},
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],
+  _creator: [{type:Schema.Types.ObjectId, ref:'User'}],
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
