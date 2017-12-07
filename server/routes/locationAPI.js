@@ -25,27 +25,41 @@ const checkIDParam = (req, res, next) => {
   });
 
   /* Create a new Location */
-  router.post('/new', (req, res, next) => {
+  // router.post('/new', (req, res, next) => {
+  //   const {title, city, availability, price, picture} = req.body;
+  //   const obj = new Location({
+  //     title,
+  //     city,
+  //     availability,
+  //     price,
+  //     picture
+  //   });
 
-    const {title, city, availability, price, picture} = req.body;
-    const obj = new Location({
-      title,
-      city,
-      availability,
-      price,
-      picture
-    });
+  // router.post('/new', upload.single('picture'), (req, res, next) => {
+  //   const file = req.file;
+  //   uploadS3(file, function (err, data) {
+  // 		if (err) {
+  // 			callback(err);
+  // 		} else {
+  //   // const {title, city, availability, price, picture} = req.body;
+  //   const obj = new Location({
+  //     title: req.body.title,
+  //     city: req.body.city,
+  //     availability: req.body.availability,
+  //     price: req.body.price,
+  //     picture: data.Location
+  //   });
 
-
-    obj.save()
-      .then(o => {
-        User.findByIdAndUpdate(req.user._id, {$push: {locations : {_id: o._id}}})
-        .then( () => {
-          res.json(o);
-        });
-      })
-      .catch(e => res.json(e));
-  });
+  //   obj.save()
+  //     .then(o => {
+  //       User.findByIdAndUpdate(req.user._id, {$push: {locations : {_id: o._id}}})
+  //       .then( () => {
+  //         res.json(o);
+  //       });
+  //     })
+  //     .catch(e => res.json(e));
+  //   }});
+  // });
 
   /* GET a single Location. */
   router.get('/:id/', checkIDParam, (req, res) => {

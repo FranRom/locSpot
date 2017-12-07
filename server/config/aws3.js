@@ -11,7 +11,6 @@ module.exports = function (file, callback) {
 	var body = fs.createReadStream(file.path);
 	var date = new Date();
 	var key = date.getTime() + '.jpg';
-  console.log(AWS_ACCESS_KEY_ID);
 	var s3obj = new AWS.S3({params: {Bucket: 'locspotbucket', Key: AWS_ACCESS_KEY_ID, ContentType: 'image/jpeg', ACL: 'public-read'}});
 
 	// Upload to S3
