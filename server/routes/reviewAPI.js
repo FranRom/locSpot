@@ -21,7 +21,7 @@ const checkIDParam = (req, res, next) => {
       .catch(e => res.json(e));
   });
 
-  /* Create a new Location */
+  /* Create a new Review */
   router.post('/new', (req, res, next) => {
 
     const {stars, content} = req.body;
@@ -40,34 +40,34 @@ const checkIDParam = (req, res, next) => {
       .catch(e => res.json(e));
   });
 
-  /* GET a single Location. */
+  /* GET a single Review. */
   router.get('/:id', checkIDParam, (req, res) => {
     Review.findById(req.params.id)
       .then(o => res.json(o))
       .catch(e => res.json(e));
   });
 
-  /* EDIT a Review. */
-  router.post('/:id', checkIDParam, (req, res) => {
-    const updates = _.pick(req.body, review_properties);
-    console.log(updates);
-    Review.findByIdAndUpdate(req.params.id, updates, {
-        new: true
-      })
-      .then(o => res.json(o))
-      .catch(e => res.json(e));
-  });
+  /* EDIT a Review. Reviews should not being editable or deleteable */
+  // router.post('/:id', checkIDParam, (req, res) => {
+  //   const updates = _.pick(req.body, review_properties);
+  //   console.log(updates);
+  //   Review.findByIdAndUpdate(req.params.id, updates, {
+  //       new: true
+  //     })
+  //     .then(o => res.json(o))
+  //     .catch(e => res.json(e));
+  // });
 
   /* DELETE a Review. */
-  router.delete('/:id', checkIDParam, (req, res) => {
-
-    Review.remove({
-        _id: req.params.id
-      })
-      .then(o => res.json({
-        message: 'Review has been removed!'
-      }))
-      .catch(e => res.json(e));
-  });
+  // router.delete('/:id', checkIDParam, (req, res) => {
+  //
+  //   Review.remove({
+  //       _id: req.params.id
+  //     })
+  //     .then(o => res.json({
+  //       message: 'Review has been removed!'
+  //     }))
+  //     .catch(e => res.json(e));
+  // });
 
 module.exports = router;

@@ -7,11 +7,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const auth = require('./routes/auth');
+const user = require('./routes/userAPI');
 const location = require('./routes/locationAPI');
 const review = require('./routes/reviewAPI');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const apiFor = require('./routes/api');
+// const apiFor = require('./routes/api');
 const cors = require('cors');
 const app = express();
 
@@ -50,9 +51,10 @@ app.use(session({
 require('./passport')(app);
 
 app.use('/api/auth', auth);
+app.use('/api/user', user);
 app.use('/api/location', location);
 app.use('/api/review', review);
-app.use('/api/user', apiFor(require('./models/User')));
+// app.use('/api/user', apiFor(require('./models/User')));
 
 
 // catch 404 and forward to error handler

@@ -12,7 +12,7 @@ authRoutes.post('/signup', (req, res, next) => {
     res.status(400).json({ message: 'Provide username and password' });
     return;
   }
-
+  
   User.findOne({ username }, '_id')
   .then(user => {
     if (user) {

@@ -43,16 +43,27 @@ const checkIDParam = (req, res, next) => {
   });
 
   /* GET a single Location. */
-  router.get('/:id', checkIDParam, (req, res) => {
+  router.get('/:id/', checkIDParam, (req, res) => {
     Location.findById(req.params.id)
       .then(o => res.json(o))
       .catch(e => res.json(e));
   });
 
   /* EDIT a Location. */
-  router.post('/:id', checkIDParam, (req, res) => {
-    const updates = _.pick(req.body, location_properties);
-    Location.findByIdAndUpdate(req.params.id, updates, {
+  router.post('/:id/edit', checkIDParam, (req, res) => {
+
+    const location_properties = {
+      title: req.body.title,
+      city: req.body.city,
+      description: req.body.description,
+      pictures: req.body.picture,
+      availability: req.body.availability,
+      price: req.body.price,
+      type: req.body.type,
+      activity: req.body.activity
+    };
+
+    Location.findByIdAndUpdate(req.params.id, location_properties, {
         new: true
       })
       .then(o => res.json(o))
@@ -60,7 +71,7 @@ const checkIDParam = (req, res, next) => {
   });
 
   /* DELETE a Location. */
-  router.delete('/:id', checkIDParam, (req, res) => {
+  router.delete('/:id/delete', checkIDParam, (req, res) => {
 
     Location.remove({
         _id: req.params.id
