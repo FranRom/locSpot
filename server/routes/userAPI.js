@@ -2,6 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const _ = require('lodash');
 const User = require('../models/User');
+const uploadS3 = require('../config/aws3');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
+//uploadS3(file, callback)
 
 const checkIDParam = (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -28,24 +32,29 @@ const checkIDParam = (req, res, next) => {
   });
 
   /* EDIT a User. */
-  router.post('/:id', checkIDParam, (req, res) => {
-
-    const user_properties = {
-      username: req.body.username,
-      lastname: req.body.lastname,
-      email: req.body.email,
-      phone: req.body.phone,
-      password: req.body.password,
-      city: req.body.city,
-      about: req.body.about,
-      avatar: req.body.avatar
-    };
+  router.post('/:id', upload.single('picture'), (req, res) => {
+    const file = req.file;
+    uploadS3(file, function (err, data) {
+  		if (err) {
+  			callback(err);
+  		} else {
+        const user_properties = {
+          username: req.body.username,
+          lastname: req.body.lastname,
+          email: req.body.email,
+          phone: req.body.phone,
+          password: req.body.password,
+          city: req.body.city,
+          about: req.body.about,
+          picture: data.Location
+        };
 
     User.findByIdAndUpdate(req.params.id, user_properties, {
         new: true
       })
       .then(o => res.json(o))
       .catch(e => res.json(e));
+    }});
   });
 
   /* DELETE a User. */

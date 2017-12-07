@@ -14,6 +14,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 // const apiFor = require('./routes/api');
 const cors = require('cors');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const app = express();
 
 mongoose.connect(process.env.DB_URL).then(() =>{
@@ -47,9 +49,7 @@ app.use(session({
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }));
 
-
 require('./passport')(app);
-
 app.use('/api/auth', auth);
 app.use('/api/user', user);
 app.use('/api/location', location);

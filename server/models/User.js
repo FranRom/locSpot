@@ -9,7 +9,7 @@ const userSchema = new Schema({
   password: { type: String, required: [true, 'Password is required'] },
   city: { type: String, required: [true, 'City is required'] },
   about: { type: String },
-  avatar: { type: String },
+  picture: { type: String },
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],
   locations: [{type:Schema.Types.ObjectId, ref:'Location'}],
   role: {type: String, enum: ['Locator', 'Client']},

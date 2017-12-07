@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 const Location = require('../models/Location');
 const User = require('../models/User');
+const uploadS3 = require('../config/aws3');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const checkIDParam = (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -24,13 +27,15 @@ const checkIDParam = (req, res, next) => {
   /* Create a new Location */
   router.post('/new', (req, res, next) => {
 
-    const {title, city, availability, price} = req.body;
+    const {title, city, availability, price, picture} = req.body;
     const obj = new Location({
       title,
       city,
       availability,
-      price
+      price,
+      picture
     });
+
 
     obj.save()
       .then(o => {
