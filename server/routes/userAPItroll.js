@@ -12,7 +12,7 @@ const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 aws.config.update({
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
   accessKeyId: AWS_ACCESS_KEY_ID,
-  region: 'us-east-1'
+  region: 'eu-west-2'
 });
 
 const s3 = new aws.S3();
@@ -23,6 +23,7 @@ const upload = multer({
     bucket: 'locspotbucket',
     key: function (req, file, cb) {
       file.originalname = new Date().getTime() + '.jpg';
+      console.log("FILE", file);
       cb(null, file.originalname);
     }
   })
@@ -56,7 +57,7 @@ const checkIDParam = (req, res, next) => {
 
   /* EDIT a User. */
   router.post('/:id', upload.single('picture'), (req, res) => {
-    const file = req.file;
+    console.log(req.file.originalname);
         const user_properties = {
           username: req.body.username,
           lastname: req.body.lastname,
@@ -65,7 +66,7 @@ const checkIDParam = (req, res, next) => {
           password: req.body.password,
           city: req.body.city,
           about: req.body.about,
-          picture: file.originalname
+          picture: req.file.originalname
         };
     User.findByIdAndUpdate(req.params.id, user_properties, {
         new: true
