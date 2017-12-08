@@ -1,34 +1,11 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const _ = require('lodash');
 const Location = require('../models/Location');
 const User = require('../models/User');
+const uploadS3 = require('../config/aws3location');
 const multer  = require('multer');
-const multerS3 = require('multer-s3');
-const aws = require('aws-sdk');
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-
-aws.config.update({
-  secretAccessKey: AWS_SECRET_ACCESS_KEY,
-  accessKeyId: AWS_ACCESS_KEY_ID,
-  region: 'eu-west-2'
-});
-
-const s3 = new aws.S3();
-
-const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: 'locspotbucket',
-    key: function (req, file, cb) {
-      file.originalname = new Date().getTime() + '.jpg';
-      console.log("FILE", file);
-      cb(null, file.originalname);
-    }
-  })
-});
+const upload = multer({ dest: 'uploads/' });
 
 const checkIDParam = (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -61,19 +38,21 @@ const checkIDParam = (req, res, next) => {
   //   });
   //
   router.post('/new', upload.array('picture', 20), (req, res, next) => {
-    console.log(req.files[0].originalname);
-    console.log(req.body);
-    const photos = [];
-    req.files.forEach(p => {
-      photos.push(p.originalname);
-    });
+    const file = req.files;
+    uploadS3(file, function (err, data) {
+  		if (err) {
+        console.log("ERRORRRRRRRRRR");
+  			callback(err);
+  		} else {
+    console.log(data.Location);
     const obj = new Location({
-      titulo: req.body.titulo,
+      title: req.body.title,
       city: req.body.city,
       availability: req.body.availability,
       price: req.body.price,
-      picture: photos
+      picture: data.Location
     });
+    console.log(obj);
 
     obj.save()
       .then(o => {
@@ -83,6 +62,7 @@ const checkIDParam = (req, res, next) => {
         });
       })
       .catch(e => res.json(e));
+    }});
   });
 
   /* GET a single Location. */

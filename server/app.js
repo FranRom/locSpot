@@ -8,16 +8,12 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const auth = require('./routes/auth');
 const user = require('./routes/userAPI');
-////////
-const jesus = require('./routes/userAPItroll');
-///////
 const location = require('./routes/locationAPI');
 const review = require('./routes/reviewAPI');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 const multer  = require('multer');
-//const upload = multer({ dest: 'uploads/' });
 const aws = require('aws-sdk');
 
 const app = express();
@@ -54,42 +50,11 @@ app.use(session({
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }));
 
-
-//////////////////////////////////////////
-
-// const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-// const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-//
-// aws.config.update({
-//     secretAccessKey: AWS_SECRET_ACCESS_KEY,
-//     accessKeyId: AWS_ACCESS_KEY_ID,
-//     region: 'us-east-1'
-// });
-//
-//
-// const s3 = new aws.S3();
-//
-// const upload = multer({
-//     storage: multerS3({
-//         s3: s3,
-//         bucket: 'locspotbucket',
-//         key: function (req, file, cb) {
-//             console.log(file);
-//             cb(null, file.originalname); //use Date.now() for unique file keys
-//         }
-//     })
-// });
-
-//////////////////////////////////////////
-
 require('./passport')(app);
 app.use('/api/auth', auth);
-//app.use('/api/user', user);
-app.use('/api/user', jesus);
+app.use('/api/user', user);
 app.use('/api/location', location);
 app.use('/api/review', review);
-// app.use('/api/user', apiFor(require('./models/User')));
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
