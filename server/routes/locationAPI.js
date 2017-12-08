@@ -37,16 +37,14 @@ const checkIDParam = (req, res, next) => {
   //     picture
   //   });
   //
-  router.post('/new', upload.single('picture'), (req, res, next) => {
-    const file = req.file;
-    console.log("JESUS1");
+  router.post('/new', upload.array('picture', 20), (req, res, next) => {
+    const file = req.files;
     uploadS3(file, function (err, data) {
   		if (err) {
-        console.log("JESUS2");
+        console.log("ERRORRRRRRRRRR");
   			callback(err);
   		} else {
-        console.log(data.Location);
-    // const {title, city, availability, price, picture} = req.body;
+    console.log(data.Location);
     const obj = new Location({
       title: req.body.title,
       city: req.body.city,
@@ -58,7 +56,6 @@ const checkIDParam = (req, res, next) => {
 
     obj.save()
       .then(o => {
-        console.log(o);
         User.findByIdAndUpdate(req.user._id, {$push: {locations : {_id: o._id}}})
         .then( () => {
           res.json(o);
@@ -75,26 +72,32 @@ const checkIDParam = (req, res, next) => {
       .catch(e => res.json(e));
   });
 
+// ARREGLAR ESTA VAINA BITCH
   /* EDIT a Location. */
-  router.post('/:id/edit', checkIDParam, (req, res) => {
-
-    const location_properties = {
-      title: req.body.title,
-      city: req.body.city,
-      description: req.body.description,
-      pictures: req.body.picture,
-      availability: req.body.availability,
-      price: req.body.price,
-      type: req.body.type,
-      activity: req.body.activity
-    };
-
-    Location.findByIdAndUpdate(req.params.id, location_properties, {
-        new: true
-      })
-      .then(o => res.json(o))
-      .catch(e => res.json(e));
-  });
+ //  router.post('/:id/edit', upload.single('picture', (req, res) => {
+ //    const file = req.file;
+ //    uploadS3(file, function (err, data) {
+ //  		if (err) {
+ //  			callback(err);
+ //  		} else {
+ //        const location_properties = {
+ //          title: req.body.title,
+ //          city: req.body.city,
+ //          description: req.body.description,
+ //          availability: req.body.availability,
+ //          price: req.body.price,
+ //          type: req.body.type,
+ //          activity: req.body.activity,
+ //          picture: data.Location
+ //       };
+ //
+ //    Location.findByIdAndUpdate(req.params.id, location_properties, {
+ //        new: true
+ //      })
+ //      .then(o => res.json(o))
+ //      .catch(e => res.json(e));
+ //   }})
+ // });
 
   /* DELETE a Location. */
   router.delete('/:id/delete', checkIDParam, (req, res) => {

@@ -8,6 +8,7 @@ const upload = multer({ dest: 'uploads/' });
 
 module.exports = function (file, callback) {
 
+file.forEach(file => {
 	var body = fs.createReadStream(file.path);
 	var date = new Date();
 	var key = date.getTime() + '.jpg';
@@ -26,4 +27,6 @@ module.exports = function (file, callback) {
 			callback(null, data);
 		}
 	});
+});
+
 };
