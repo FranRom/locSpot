@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const _ = require('lodash');
 const User = require('../models/User');
-const uploadS3 = require('../config/aws3');
+const uploadS3 = require('../config/aws3profile');
 const multer  = require('multer');
 const upload = multer({ dest: 'uploads/' });
 //uploadS3(file, callback)

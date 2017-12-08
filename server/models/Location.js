@@ -5,7 +5,7 @@ const locationSchema = new Schema({
   title: { type: String, required: [true, 'Title is required']},
   city: { type: String, required: [true, 'City is required']},
   description: { type: String },
-  picture: [{ img: String }],
+  picture: [{ type: String }],
   tags: [{ type: String }],
   availability: { type: String, required: [true, 'Availability is required']},
   price: { type: String, required: [true, 'Price is required']},

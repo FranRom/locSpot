@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 const Location = require('../models/Location');
 const User = require('../models/User');
-const uploadS3 = require('../config/aws3');
+const uploadS3 = require('../config/aws3location');
 const multer  = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
@@ -25,6 +25,8 @@ const checkIDParam = (req, res, next) => {
   });
 
   /* Create a new Location */
+  /* Initial code */
+
   // router.post('/new', (req, res, next) => {
   //   const {title, city, availability, price, picture} = req.body;
   //   const obj = new Location({
@@ -34,32 +36,37 @@ const checkIDParam = (req, res, next) => {
   //     price,
   //     picture
   //   });
+  //
+  router.post('/new', upload.single('picture'), (req, res, next) => {
+    const file = req.file;
+    console.log("JESUS1");
+    uploadS3(file, function (err, data) {
+  		if (err) {
+        console.log("JESUS2");
+  			callback(err);
+  		} else {
+        console.log(data.Location);
+    // const {title, city, availability, price, picture} = req.body;
+    const obj = new Location({
+      title: req.body.title,
+      city: req.body.city,
+      availability: req.body.availability,
+      price: req.body.price,
+      picture: data.Location
+    });
+    console.log(obj);
 
-  // router.post('/new', upload.single('picture'), (req, res, next) => {
-  //   const file = req.file;
-  //   uploadS3(file, function (err, data) {
-  // 		if (err) {
-  // 			callback(err);
-  // 		} else {
-  //   // const {title, city, availability, price, picture} = req.body;
-  //   const obj = new Location({
-  //     title: req.body.title,
-  //     city: req.body.city,
-  //     availability: req.body.availability,
-  //     price: req.body.price,
-  //     picture: data.Location
-  //   });
-
-  //   obj.save()
-  //     .then(o => {
-  //       User.findByIdAndUpdate(req.user._id, {$push: {locations : {_id: o._id}}})
-  //       .then( () => {
-  //         res.json(o);
-  //       });
-  //     })
-  //     .catch(e => res.json(e));
-  //   }});
-  // });
+    obj.save()
+      .then(o => {
+        console.log(o);
+        User.findByIdAndUpdate(req.user._id, {$push: {locations : {_id: o._id}}})
+        .then( () => {
+          res.json(o);
+        });
+      })
+      .catch(e => res.json(e));
+    }});
+  });
 
   /* GET a single Location. */
   router.get('/:id/', checkIDParam, (req, res) => {
