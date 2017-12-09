@@ -12,7 +12,7 @@ const userSchema = new Schema({
   picture: { type: String, default:"https://locspotbucket.s3.amazonaws.com/AKIAJYXSRUAM6NCP3ARA"},
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],
   locations: [{type:Schema.Types.ObjectId, ref:'Location'}],
-  role: {type: String, enum: ['Locator', 'Client']},
+  role: {type: String, enum: ['Locator', 'Renter']},
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
