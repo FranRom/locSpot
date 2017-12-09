@@ -14,16 +14,16 @@
   <input type="password" [(ngModel)]="formInfo.password" name="password"/>
   <br>
   <label> Phone </label>
-  <input type="phone" [(ngModel)]="formInfo.phone" name="phone"/>
+  <input type="text" [(ngModel)]="formInfo.phone" name="phone"/>
   <br>
   <label> City </label>
-  <input type="city" [(ngModel)]="formInfo.city" name="city"/>
+  <input type="text" [(ngModel)]="formInfo.city" name="city"/>
   <br>
-  <label>Profile</label>
+  <!-- <label>Profile</label>
   <select name="role" [(ngModel)]="formInfo.role">
-   <option value="Locator">Locator</option>
+   <option value="Locator" selected="selected">Locator</option>
    <option value="Renter">Renter</option>
   </select>
-  <br>
+  <br> -->
   <button (click)="signup(formInfo)"> signup </button>
 </form>

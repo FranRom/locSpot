@@ -2,10 +2,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Http} from '@angular/http';
-import 'rxjs';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import {environment} from '../../environments/environment';
 
-const BASEURL = environment.BASEURL + "/auth";
+const BASEURL = environment.BASEURL + "/api/auth";
 
 @Injectable()
 export class AuthService {
@@ -37,10 +38,10 @@ export class AuthService {
       return Observable.throw(e.json().message);
     }
 
-    signup(username,lastname,email,password,city,phone,role) {
-      console.log("entrooo")
-      console.log(username,lastname,email,password,city,phone,role)
-      return this.http.post(`${BASEURL}/signup`, {username,lastname,email,password,city,phone,role}, this.options)
+    signup(username,lastname,email,password,city,phone) {
+      console.log("entrooooooo")
+      console.log(username,lastname,email,password,city,phone)
+      return this.http.post(`${BASEURL}/signup`, {username,lastname,email,password,city,phone}, this.options)
         .map(res => res.json())
         .map(user => this.emitUserLoginEvent(user))
         .catch(this.handleError);
@@ -53,6 +54,11 @@ export class AuthService {
         .catch(this.handleError);
     }
 
+    edit(id,user) {
+      return this.http.put(`${BASEURL}/${id}/edit`,user, this.options)
+      .map((res) =>res.json());
+    }
+
     logout() {
       return this.http.get(`${BASEURL}/logout`, this.options)
         .map(res => res.json())
@@ -60,10 +66,10 @@ export class AuthService {
         .catch(this.handleError);
     }
 
-    // isLoggedIn() {
-    //   return this.http.get(`${BASEURL}/loggedin`, this.options)
-    //     .map(res => res.json())
-    //     .map(user => this.emitUserLoginEvent(user))
-    //     .catch(this.handleError);
-    // }
+    isLoggedIn() {
+      return this.http.get(`${BASEURL}/loggedin`, this.options)
+        .map(res => res.json())
+        .map(user => this.emitUserLoginEvent(user))
+        .catch(this.handleError);
+    }
 }
