@@ -1,0 +1,12 @@
+<h1> Locations list </h1>
+
+<div class="locations">
+  <div *ngFor="let e of location" class="location">
+
+    <h3> {{ e.title }} </h3>
+    <p> {{ e.city }} </p>
+    <p> {{ e.availability }} </p>
+    <p> {{ e.price }} </p>
+    <!-- <a [routerLink]="['location', location._id]"> View Details </a> -->
+  </div>
+</div>
