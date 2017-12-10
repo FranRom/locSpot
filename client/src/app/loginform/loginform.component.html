@@ -1,6 +1,4 @@
 
-
-
 <div *ngIf="!auth.user">
  <form >
   <h2> Login </h2>
@@ -20,5 +18,5 @@
 
 <div *ngIf="auth.user">
   <h2>Welcome {{auth.user.username}}</h2>
-  <a href="#" (click)="logout()">Logout {{auth.user.username}}</a>
+  <a href="#" (click)="auth.logout().subscribe()">Logout {{auth.user.username}}</a>
 </div>

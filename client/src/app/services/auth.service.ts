@@ -15,9 +15,9 @@ export class AuthService {
   private userLoginEvent:EventEmitter<any> = new EventEmitter<any>();
   private options = {withCredentials:true};
 
-  constructor(private http: Http) {}
-  //   this.isLoggedIn().subscribe();
-  // }
+  constructor(private http: Http) {
+    this.isLoggedIn().subscribe();
+  }
 
     public getLoginEventEmitter():EventEmitter<any>{
       return this.userLoginEvent;
@@ -54,10 +54,10 @@ export class AuthService {
         .catch(this.handleError);
     }
 
-    edit(id,user) {
-      return this.http.put(`${BASEURL}/${id}/edit`,user, this.options)
-      .map((res) =>res.json());
-    }
+    // edit(id,user) {
+    //   return this.http.put(`${BASEURL}/${id}/edit`,user, this.options)
+    //   .map((res) =>res.json());
+    // }
 
     logout() {
       return this.http.get(`${BASEURL}/logout`, this.options)
