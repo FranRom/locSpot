@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const locationSchema = new Schema({
-  titulo: { type: String, required: [true, 'Title is required']},
+  title: { type: String, required: [true, 'Title is required']},
   city: { type: String, required: [true, 'City is required']},
   description: { type: String },
   picture: [{ type: String }],

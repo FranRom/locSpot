@@ -18,14 +18,22 @@ export class LocationService {
    .map(res => res.json());
   }
 
-  getListByID(id):Observable<any>{
-      return this.http.get(`${BASEURL}/${id}`)
-      .map(res => res.json());
+  getLocationByID(id):Observable<any>{
+   return this.http.get(`${BASEURL}/${id}`)
+   .map(res => res.json());
   }
 
   deleteLocation(id){
-      return this.http.delete(`${BASEURL}/${id}`)
-                      .map(res => res.json());
+   return this.http.delete(`${BASEURL}/${id}`)
+   .map(res => res.json());
+  }
+
+  createLocation(){
+   return this.http.post(`${BASEURL}/${id}/new`, {title,city,availability,price,photos}, this.options)
+     .map(res => res.json())
+     .map(user => this.emitUserLoginEvent(user))
+     .catch(this.handleError);
+  }
   }
 
 }

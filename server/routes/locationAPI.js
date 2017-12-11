@@ -21,7 +21,7 @@ const s3 = new aws.S3();
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'locspotbucket',
+    bucket: 'lspot',
     key: function (req, file, cb) {
       file.originalname = new Date().getTime() + '.jpg';
       console.log("FILE", file);
@@ -60,15 +60,17 @@ const checkIDParam = (req, res, next) => {
   //     picture
   //   });
   //
-  router.post('/new', upload.array('picture', 20), (req, res, next) => {
+  router.post('/new', upload.array('picture', 10), (req, res, next) => {
     console.log(req.files[0].originalname);
     console.log(req.body);
     const photos = [];
     req.files.forEach(p => {
       photos.push(p.originalname);
     });
+
+    //tenía puesto titulo en vex de title porque fallaba
     const obj = new Location({
-      titulo: req.body.titulo,
+      title: req.body.title,
       city: req.body.city,
       availability: req.body.availability,
       price: req.body.price,

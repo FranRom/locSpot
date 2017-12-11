@@ -4,9 +4,12 @@
   <div *ngFor="let e of location" class="location">
 
     <h3> {{ e.title }} </h3>
+    <img [src]="e.picture" />
     <p> {{ e.city }} </p>
-    <p> {{ e.availability }} </p>
-    <p> {{ e.price }} </p>
-    <!-- <a [routerLink]="['location', location._id]"> View Details </a> -->
+    <p> {{ e.type }} </p>
+    <p> from {{ e.price }}€ per day </p>
+    <p> available in {{ e.availability }} days </p>
+    <p> {{ e._creator }}</p>
+    <a [routerLink]="['location', location._id]"> View Details </a>
   </div>
 </div>

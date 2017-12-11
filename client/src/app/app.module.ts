@@ -12,8 +12,11 @@ import { IsLoggedInService } from './services/isLoggedIn.canactivate.service';
 import {routes} from './routes';
 import { SignupformComponent } from './signupform/signupform.component';
 import { LocationListComponent } from './location-list/location-list.component';
+import { LocationDetailComponent } from './location-detail/location-detail.component';
 
 import {LocationService} from './services/location.service';
+
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import {LocationService} from './services/location.service';
     HomeComponent,
     UserprofileComponent,
     SignupformComponent,
-    LocationListComponent
+    LocationListComponent,
+    LocationDetailComponent
   ],
   imports: [
     BrowserModule,
