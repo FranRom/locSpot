@@ -16,6 +16,8 @@ aws.config.update({
   region: 'eu-west-2'
 });
 
+let superPhotos = [];
+
 const s3 = new aws.S3();
 
 const upload = multer({
@@ -25,6 +27,7 @@ const upload = multer({
     key: function (req, file, cb) {
       file.originalname = new Date().getTime() + '.jpg';
       console.log("FILE", file);
+      superPhotos.push(file.originalname);
       cb(null, file.originalname);
     }
   })
@@ -60,23 +63,25 @@ const checkIDParam = (req, res, next) => {
   //     picture
   //   });
   //
-  router.post('/new', upload.array('picture', 10), (req, res, next) => {
-    console.log(req.files[0].originalname);
-    console.log(req.body);
-    const photos = [];
-    req.files.forEach(p => {
-      photos.push(p.originalname);
-    });
+  router.post('/addPhoto', upload.array('file', 10), (req, res, next) => {
+    return res.json({message : "SUBIDA TERMINADA"});
+  });
 
-    //tenía puesto titulo en vex de title porque fallaba
+
+  router.post('/new', upload.array('file', 10), (req, res, next) => {
+    // const photos = [];
+    // req.files.forEach(p => {
+    //   photos.push(p.originalname);
+    // });
+
     const obj = new Location({
       title: req.body.title,
       city: req.body.city,
       availability: req.body.availability,
       price: req.body.price,
-      picture: photos
+      picture: superPhotos
     });
-
+    superPhotos = [];
     obj.save()
       .then(o => {
         User.findByIdAndUpdate(req.user._id, {$push: {locations : {_id: o._id}}})

@@ -1,0 +1,44 @@
+
+<h2> Add location</h2>
+<br>
+   <image-upload>
+    [max]="20"
+    [maxFileSize]="1048576"
+  </image-upload>
+
+<form action="index.html" method="post">
+
+
+</form>
+
+<!-- <form class="" action="index.html" method="post">
+
+  <label> Pictures</label>
+  <br>
+  <input type="file" ng2FileSelect [uploader]="uploader" multiple  />
+  <br/>
+
+<button (click)="josue()"> Add Photo </button>
+</form> -->
+
+<form >
+  <fieldset>
+
+    <label> Title</label>
+    <input type="text" [(ngModel)]="newLocation.title" name="title"/>
+    <br><br>
+    <label> City </label>
+    <input type="text" [(ngModel)]="newLocation.city" name="city"/>
+    <br><br>
+    <label> Availability </label>
+    <input type="text" [(ngModel)]="newLocation.availability" name="availability"/>
+    <br><br>
+    <label> Price </label>
+    <input type="text" [(ngModel)]="newLocation.price" name="price"/>
+    <br><br>
+</fieldset>
+
+  <button (click)="submit()"> Add Location </button>
+</form>
+
+<p> {{ feedback }} </p>

@@ -10,7 +10,7 @@ const BASEURL = environment.BASEURL + "/api/location";
 
 @Injectable()
 export class LocationService {
- private options = {withCredentials:true};
+ options = {withCredentials:true};
  constructor(private http: Http) {}
 
   getLocationList():Observable<any>{
@@ -28,12 +28,10 @@ export class LocationService {
    .map(res => res.json());
   }
 
-  createLocation(){
-   return this.http.post(`${BASEURL}/${id}/new`, {title,city,availability,price,photos}, this.options)
-     .map(res => res.json())
-     .map(user => this.emitUserLoginEvent(user))
-     .catch(this.handleError);
+  newLocation(title,city,availability,price,picture){
+   return this.http.post(`${BASEURL}/new`, {title,city,availability,price,picture}, this.options)
+   // .map(res => res.json());
+   //return this.http.post(`${BASEURL}/new`, this.options )
+   .map (res => res.json());
   }
   }
-
-}

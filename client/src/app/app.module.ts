@@ -9,12 +9,18 @@ import { HomeComponent } from './home/home.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { RouterModule } from '@angular/router';
 import { IsLoggedInService } from './services/isLoggedIn.canactivate.service';
-import {routes} from './routes';
+import { routes } from './routes';
 import { SignupformComponent } from './signupform/signupform.component';
 import { LocationListComponent } from './location-list/location-list.component';
 import { LocationDetailComponent } from './location-detail/location-detail.component';
+import { FileUploadModule } from "ng2-file-upload";
+import { ImageUploadModule } from "angular2-image-upload";
 
-import {LocationService} from './services/location.service';
+
+
+
+import { LocationService } from './services/location.service';
+import { NewLocationComponent } from './new-location/new-location.component';
 
 
 
@@ -26,12 +32,16 @@ import {LocationService} from './services/location.service';
     UserprofileComponent,
     SignupformComponent,
     LocationListComponent,
-    LocationDetailComponent
+    LocationDetailComponent,
+    NewLocationComponent
   ],
+
   imports: [
     BrowserModule,
+    FileUploadModule,
     FormsModule,
     HttpModule,
+    ImageUploadModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   providers: [AuthService, IsLoggedInService, LocationService],
