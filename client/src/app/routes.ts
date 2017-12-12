@@ -7,6 +7,7 @@ import {SignupformComponent} from './signupform/signupform.component';
 import {LocationListComponent } from './location-list/location-list.component';
 import {LocationDetailComponent } from './location-detail/location-detail.component';
 import {NewLocationComponent} from './new-location/new-location.component';
+import {TagsComponent} from './tags/tags.component';
 
 import {IsLoggedInService} from './services/isLoggedIn.canactivate.service';
 import {LocationService} from './services/location.service';
@@ -20,5 +21,6 @@ export const routes: Routes = [
     { path: 'explore', component: LocationListComponent},
     { path: 'explore/:id', component: LocationDetailComponent},
     { path: 'newlocation', component: NewLocationComponent},
+    { path: 'tags', component: NewLocationComponent},
     { path: '**', redirectTo: '' }
 ];

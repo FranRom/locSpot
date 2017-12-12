@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tags',
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class TagsComponent implements OnInit {
 
-  constructor() { }
+  tags: Array<string>;
+  validators: Array<any>;
 
-  ngOnInit() {
+  constructor() {
+
   }
 
+  ngOnInit() {
+    this.validators = [Validators.minLength(2)];
+  }
 }
