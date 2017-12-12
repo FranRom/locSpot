@@ -1,21 +1,18 @@
 
 <h1> Add a Location</h1>
 <br>
-
-
-<!-- <form class="" action="index.html" method="post">
-
-  <label> Pictures</label>
-  <br>
-  <input type="file" ng2FileSelect [uploader]="uploader" multiple  />
-  <br/>
-
-<button (click)="josue()"> Add Photo </button>
-</form> -->
-
 <form >
   <fieldset>
-
+    <image-upload
+      [url]="'http://localhost:3000/api/location/addPhoto'"
+      [max]="20"
+      [buttonCaption]="'Add Images'"
+      [maxFileSize]="104857600"
+      (uploadFinished)="onUploadFinished($event)"
+      (removed)="onRemoved($event)">
+    </image-upload>
+    <br>
+    <br>
     <label> Title</label>
     <input type="text" [(ngModel)]="newLocation.title" name="title"/>
     <br><br>
@@ -30,7 +27,5 @@
     <br><br>
 </fieldset>
 
-  <button (click)="submit()"> Add Location </button>
+  <button (click)="submit(newLocation)"> Add Location </button>
 </form>
-
-<p> {{ feedback }} </p>

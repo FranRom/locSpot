@@ -24,14 +24,13 @@ export class LocationService {
   }
 
   deleteLocation(id){
-   return this.http.delete(`${BASEURL}/${id}`)
+   return this.http.delete(`${BASEURL}/${id}/delete`)
    .map(res => res.json());
   }
 
-  newLocation(title,city,availability,price,picture){
-   return this.http.post(`${BASEURL}/new`, {title,city,availability,price,picture}, this.options)
-   // .map(res => res.json());
-   //return this.http.post(`${BASEURL}/new`, this.options )
-   .map (res => res.json());
+  newLocation(title,city,availability,price,photo){
+   return this.http.post(`${BASEURL}/new`, {title,city,availability,price,photo}, this.options)
+   .map(res => res.json());
+
   }
-  }
+}

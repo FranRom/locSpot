@@ -21,9 +21,9 @@ export class LocationDetailComponent implements OnInit {
   }
 
   deleteLocation(id){
-    this.locationService.deleteLocation(id).subscribe(() =>{
-      this.router.navigate(['']);
-    });
+    this.locationService.deleteLocation(id)
+    .subscribe(() =>{this.router.navigate(['explore'])
+  });
   }
 
   ngOnInit() {

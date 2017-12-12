@@ -16,8 +16,6 @@ aws.config.update({
   region: 'eu-west-2'
 });
 
-let superPhotos = [];
-
 const s3 = new aws.S3();
 
 const upload = multer({
@@ -27,7 +25,7 @@ const upload = multer({
     key: function (req, file, cb) {
       file.originalname = new Date().getTime() + '.jpg';
       console.log("FILE", file);
-      superPhotos.push(file.originalname);
+      // superPhotos.push(file.originalname);
       cb(null, file.originalname);
     }
   })
@@ -50,38 +48,27 @@ const checkIDParam = (req, res, next) => {
       .catch(e => res.json(e));
   });
 
-  /* Create a new Location */
-  /* Initial code */
-
-  // router.post('/new', (req, res, next) => {
-  //   const {title, city, availability, price, picture} = req.body;
-  //   const obj = new Location({
-  //     title,
-  //     city,
-  //     availability,
-  //     price,
-  //     picture
-  //   });
-  //
-  router.post('/addPhoto', upload.array('file', 10), (req, res, next) => {
-    return res.json({message : "SUBIDA TERMINADA"});
-  });
+  router.post('/addPhoto', upload.single('image'), (req, res, next) => {
+  if (req.file) {
+    console.log("BACK");
+    console.log(req.file.location);
+    res.status(200).json(req.file.location);
+  } else {
+    res.status(500).json("some error");
+  }
+  console.log(req.file);
+});
 
 
-  router.post('/new', upload.array('file', 10), (req, res, next) => {
-    // const photos = [];
-    // req.files.forEach(p => {
-    //   photos.push(p.originalname);
-    // });
+  router.post('/new',  (req, res, next) => {
 
     const obj = new Location({
       title: req.body.title,
       city: req.body.city,
       availability: req.body.availability,
       price: req.body.price,
-      picture: superPhotos
+      picture: req.body.photo
     });
-    superPhotos = [];
     obj.save()
       .then(o => {
         User.findByIdAndUpdate(req.user._id, {$push: {locations : {_id: o._id}}})

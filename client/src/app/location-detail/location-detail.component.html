@@ -1,5 +1,5 @@
 <h1> Location details </h1>
-  <a [routerLink]="['/explore']"> Back to list </a>
+  <a [routerLink]="['/explore']"> Back to Explore</a>
 
   <div *ngIf="location">
     <div class="location-thumbnail">
@@ -7,11 +7,12 @@
     </div>
 
     <div class="location-info">
-      <h2> {{ location.title}}&nbsp;</h2>
+      <h2> {{ location.title}}</h2>
       <h3> {{ location.city }} </h3>
       <p> {{ location.type }} </p>
       <p> from {{ location.price }}€ per day </p>
       <p> available in {{ location.availability }} days </p>
+      <p>{{ location._id }}</p>
     </div>
-    <button (click)="deleteLocation(location._id)"> Delete </button>
+    <button (click)="deleteLocation(location._id)"> Delete Location </button>
   </div>

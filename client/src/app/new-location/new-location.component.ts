@@ -18,47 +18,50 @@ export class NewLocationComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
     url: 'http://localhost:3000/api/location/addPhoto'
   });
+
   newLocation = {
     title:"",
     city:"",
     availability:"",
     price:"",
-    picture:""
+
   }
+  photo = [];
 
   feedback: string;
 
-  constructor() { }
+  constructor(public location:LocationService) { }
 
-  ngOnInit() {
-    this.uploader.onSuccessItem = (item, response) => {
-     this.feedback = JSON.parse(response).message;
-   };
-
-   this.uploader.onErrorItem = (item, response, status, headers) => {
-     this.feedback = JSON.parse(response).message;
-   };
- }
+  ngOnInit() {}
 
 //  addTags(tag) {
 //   this.newLocation.tags.push(tag);
 // }
 
-  josue(){
-  this.uploader.uploadAll();
-  this.uploader.onCompleteItem =  () => console.log("Done")
+onUploadFinished(e){
+  this.photo[e.file.name] = e.serverResponse._body.slice(1, -1);;
+  console.log("FILE", e.serverResponse._body);
+  console.log("PHOTO", this.photo);
 }
-  submit(){
-    this.uploader.onBuildItemForm = (file, form) => {
-       form.append('title', this.newLocation.title);
-       form.append('city', this.newLocation.city);
-       form.append('availability', this.newLocation.availability);
-       form.append('price', this.newLocation.price);
-     };
+onRemoved(e){
+  delete this.photo[e.file.name];
+  console.log(this.photo);
+}
 
-       this.uploader.uploadAll();
-       this.uploader.onCompleteItem =  () => console.log("Done")
+submit(newLocation){
+  console.log("newLocation: " + newLocation);
+  const {title,city,availability,price} = this.newLocation;
+  const photo = this.photo;
 
+  if(title != "" && city != "" && availability != "" && price != ""){
 
-   }
- }
+    this.location.newLocation(title,city,availability,price,photo)
+    .map(location => console.log(location))
+    .subscribe();
+    this.photo=[];
+    
+  } else{
+    console.log("You must fill all the form fields");
+  }
+}
+}

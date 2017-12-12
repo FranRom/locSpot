@@ -12,11 +12,10 @@ export class LocationListComponent implements OnInit {
   constructor(public locationService:LocationService) {
   this.locationService.getLocationList().subscribe( list =>{
   this.location = list;
-});
-
+ });
 }
 
-ngOnInit() {
-}
+ ngOnInit() {
+ }
 
 }
