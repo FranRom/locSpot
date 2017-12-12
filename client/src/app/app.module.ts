@@ -16,11 +16,12 @@ import { LocationDetailComponent } from './location-detail/location-detail.compo
 import { FileUploadModule } from "ng2-file-upload";
 import { ImageUploadModule } from "angular2-image-upload";
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed for!
 
 
 import { LocationService } from './services/location.service';
 import { NewLocationComponent } from './new-location/new-location.component';
+
 
 
 
@@ -33,7 +34,7 @@ import { NewLocationComponent } from './new-location/new-location.component';
     SignupformComponent,
     LocationListComponent,
     LocationDetailComponent,
-    NewLocationComponent
+    NewLocationComponent,
   ],
 
   imports: [
@@ -41,10 +42,12 @@ import { NewLocationComponent } from './new-location/new-location.component';
     FileUploadModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
     ImageUploadModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   providers: [AuthService, IsLoggedInService, LocationService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -8,7 +8,6 @@ import {LocationListComponent } from './location-list/location-list.component';
 import {LocationDetailComponent } from './location-detail/location-detail.component';
 import {NewLocationComponent} from './new-location/new-location.component';
 
-
 import {IsLoggedInService} from './services/isLoggedIn.canactivate.service';
 import {LocationService} from './services/location.service';
 
