@@ -6,9 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { RequestOptions } from '@angular/http';
 import { Headers } from '@angular/http';
-import { L_SEMANTIC_UI_MODULE } from 'angular2-semantic-ui';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-new-location',
@@ -62,7 +59,7 @@ submit(newLocation){
     .map(location => console.log(location))
     .subscribe();
     this.photo=[];
-
+    
   } else{
     console.log("You must fill all the form fields");
   }

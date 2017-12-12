@@ -15,9 +15,6 @@ import { LocationListComponent } from './location-list/location-list.component';
 import { LocationDetailComponent } from './location-detail/location-detail.component';
 import { FileUploadModule } from "ng2-file-upload";
 import { ImageUploadModule } from "angular2-image-upload";
-import { L_SEMANTIC_UI_MODULE } from 'angular2-semantic-ui';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 import { LocationService } from './services/location.service';
 import { NewLocationComponent } from './new-location/new-location.component';
@@ -32,8 +29,7 @@ import { NewLocationComponent } from './new-location/new-location.component';
     SignupformComponent,
     LocationListComponent,
     LocationDetailComponent,
-    NewLocationComponent
-
+    NewLocationComponent,
   ],
 
   imports: [
@@ -41,9 +37,6 @@ import { NewLocationComponent } from './new-location/new-location.component';
     FileUploadModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule,
-    CommonModule,
-    L_SEMANTIC_UI_MODULE,
     ImageUploadModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
