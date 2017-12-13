@@ -45,7 +45,7 @@ header {
 	float: left;
 	width: 200px;
 	height: 40px;
-	/*background: url(../img/logo.png) no-repeat center;*/
+	background: url('https://res.cloudinary.com/lspot/image/upload/v1513201486/locspot_logo_adk1j6.png') no-repeat center;
 	display: block;
 }
 

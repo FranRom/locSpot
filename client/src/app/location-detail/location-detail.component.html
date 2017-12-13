@@ -1,4 +1,5 @@
-<h1> Location details </h1>
+
+  <h1> Location details </h1>
   <a [routerLink]="['/explore']"> Back to Explore</a>
 
   <div *ngIf="location">
@@ -15,4 +16,19 @@
       <p> available in {{ location.availability }} days </p>
     </div>
     <button (click)="deleteLocation(location._id)"> Delete Location </button>
+
+ <div class="form-style-6">
+    <form>
+      <h1 style="text-align:center, font-size:70px">{{ location.price }}€/day</h1> 
+      <br>
+      <input type="date" placeholder="Date"  name="date" />
+      <br>
+      <input type="text" placeholder="Availability"  name="availability" />
+      <br>
+      <button>Send</button>
+      <br>
+      <p>We don't charge you anything yet</p>
+    </form>
+    <p class="error"> {{ error }} </p>
   </div>
+ </div>
