@@ -1,15 +1,18 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<div style="text-align:center">
-  <ul>
-  <li><a [routerLink]="['/']">Home</a></li>
-  <li><a [routerLink]="['/explore']">Explore</a></li>
-  <li><a [routerLink]="['/newlocation']">Add Location</a></li>
-  <li><a [routerLink]="['/user']">User Profile</a></li>
-  <li><a [routerLink]="['/login']">Log in</a></li>
-  <li><a [routerLink]="['/signup']">Get Started</a></li>
-  </ul>
+<header>
+  <a href="#" id="logo"></a>
+  <nav>
+    <a href="#" id="menu-icon"></a>
+    <ul>
+      <li><a [routerLink]="['/']">Home</a></li>
+      <li><a [routerLink]="['/explore']">Explore</a></li>
+      <li><a [routerLink]="['/newlocation']">Add Location</a></li>
+      <li><a [routerLink]="['/user']">User Profile</a></li>
+      <li><a [routerLink]="['/login']">Log in</a></li>
+      <li><a [routerLink]="['/signup']">Get Started</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <router-outlet></router-outlet>
-
-</div>
+<router-outlet></router-outlet>

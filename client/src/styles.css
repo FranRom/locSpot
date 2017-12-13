@@ -1,2 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+button {
+  font-size: 16px;
+  padding: 10px 15px;
+  background-color: #dbedf3;
+  color: #333333;
+  border-radius: 4px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: #fff;
+
+}

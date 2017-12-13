@@ -1,5 +1,4 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <h1> Add a Location</h1>
 <br>
 <form >
@@ -13,7 +12,22 @@
       (removed)="onRemoved($event)">
     </image-upload>
     <br>
-    <h2>Add some tags here to make your location more findable</h2>
+    <br>
+
+    <label> Title</label>
+    <input type="text" [(ngModel)]="newLocation.title" name="title"/>
+    <br><br>
+    <label> City </label>
+    <input type="text" [(ngModel)]="newLocation.city" name="city"/>
+    <br><br>
+    <label> Availability </label>
+    <input type="text" [(ngModel)]="newLocation.availability" name="availability"/>
+    <br><br>
+    <label> Price </label>
+    <input type="text" [(ngModel)]="newLocation.price" name="price"/>
+    <br>
+    <br>
+    <h2>Add tags and press enter, your location will be more findable</h2>
     <mat-form-field class="tag-list">
      <mat-chip-list #chipList>
       <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
@@ -28,20 +42,6 @@
            (matChipInputTokenEnd)="add($event)" />
      </mat-chip-list>
     </mat-form-field>
-    <br>
-
-    <label> Title</label>
-    <input type="text" [(ngModel)]="newLocation.title" name="title"/>
-    <br><br>
-    <label> City </label>
-    <input type="text" [(ngModel)]="newLocation.city" name="city"/>
-    <br><br>
-    <label> Availability </label>
-    <input type="text" [(ngModel)]="newLocation.availability" name="availability"/>
-    <br><br>
-    <label> Price </label>
-    <input type="text" [(ngModel)]="newLocation.price" name="price"/>
-    <br><br>
 </fieldset>
 
   <button (click)="submit(newLocation)"> Add Location </button>

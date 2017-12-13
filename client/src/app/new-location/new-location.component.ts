@@ -22,15 +22,11 @@ export class NewLocationComponent implements OnInit {
   selectable: boolean = true;
   removable: boolean = true;
   addOnBlur: boolean = true;
-
+  
   // Enter, comma
   separatorKeysCodes = [ENTER, COMMA];
 
-  tags = [
-    { name: 'Classical' },
-    { name: 'Creative' },
-    { name: 'Industrial' },
-  ];
+  tags = [];
 
   add(event: MatChipInputEvent): void {
     let input = event.input;

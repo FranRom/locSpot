@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatChipsModule,
     MatIconModule,
     MatFormFieldModule,
+    MatSelectModule,
     ImageUploadModule.forRoot(),
     RouterModule.forRoot(routes),
 
