@@ -67,8 +67,11 @@ const checkIDParam = (req, res, next) => {
       city: req.body.city,
       availability: req.body.availability,
       price: req.body.price,
+      tags: req.body.tags,
       picture: req.body.photo
     });
+    
+
     obj.save()
       .then(o => {
         User.findByIdAndUpdate(req.user._id, {$push: {locations : {_id: o._id}}})
@@ -86,7 +89,7 @@ const checkIDParam = (req, res, next) => {
       .catch(e => res.json(e));
   });
 
-// ARREGLAR ESTA VAINA BITCH
+// ARREGLAR ESTA VAINA para editar location
   /* EDIT a Location. */
  //  router.post('/:id/edit', upload.single('picture', (req, res) => {
  //    const file = req.file;

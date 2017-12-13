@@ -22,11 +22,10 @@ export class NewLocationComponent implements OnInit {
   selectable: boolean = true;
   removable: boolean = true;
   addOnBlur: boolean = true;
-  
   // Enter, comma
   separatorKeysCodes = [ENTER, COMMA];
-
   tags = [];
+  real = [];
 
   add(event: MatChipInputEvent): void {
     let input = event.input;
@@ -35,6 +34,8 @@ export class NewLocationComponent implements OnInit {
     // Add our fruit
     if ((value || '').trim()) {
       this.tags.push({ name: value.trim() });
+      this.real.push(value.trim());
+      console.log(this.real)
     }
 
     // Reset the input value
@@ -45,7 +46,8 @@ export class NewLocationComponent implements OnInit {
 
   remove(tag: any): void {
     let index = this.tags.indexOf(tag);
-
+    this.real.splice(-1,1)
+    console.log(this.real)
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
@@ -61,8 +63,9 @@ export class NewLocationComponent implements OnInit {
     city:"",
     availability:"",
     price:"",
-
+    tags:[]
   }
+
   photo = [];
 
   feedback: string;
@@ -87,15 +90,21 @@ onRemoved(e){
 
 submit(newLocation){
   console.log("newLocation: " + newLocation);
-  const {title,city,availability,price} = this.newLocation;
+  console.log(this.tags);
+  
+  const {title,city,availability,price,tags} = this.newLocation;
   const photo = this.photo;
+
+  console.log("this.newlocation: " + this.newLocation)
 
   if(title != "" && city != "" && availability != "" && price != ""){
 
-    this.location.newLocation(title,city,availability,price,photo)
+    this.location.newLocation(title,city,availability,price,tags,photo)
     .map(location => console.log(location))
     .subscribe();
     this.photo=[];
+
+  console.log("this.location.newLocation" + this.location.newLocation);
 
   } else{
     console.log("You must fill all the form fields");
