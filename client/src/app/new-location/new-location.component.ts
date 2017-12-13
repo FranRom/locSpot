@@ -6,6 +6,10 @@ import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { RequestOptions } from '@angular/http';
 import { Headers } from '@angular/http';
+import { MatChipInputEvent } from '@angular/material';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-new-location',
@@ -14,6 +18,43 @@ import { Headers } from '@angular/http';
 })
 
 export class NewLocationComponent implements OnInit {
+  visible: boolean = true;
+  selectable: boolean = true;
+  removable: boolean = true;
+  addOnBlur: boolean = true;
+
+  // Enter, comma
+  separatorKeysCodes = [ENTER, COMMA];
+
+  tags = [
+    { name: 'Classical' },
+    { name: 'Creative' },
+    { name: 'Industrial' },
+  ];
+
+  add(event: MatChipInputEvent): void {
+    let input = event.input;
+    let value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.tags.push({ name: value.trim() });
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(tag: any): void {
+    let index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
+
 
   uploader: FileUploader = new FileUploader({
     url: 'http://localhost:3000/api/location/addPhoto'
@@ -59,7 +100,7 @@ submit(newLocation){
     .map(location => console.log(location))
     .subscribe();
     this.photo=[];
-    
+
   } else{
     console.log("You must fill all the form fields");
   }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginformComponent } from './loginform/loginform.component';
 import { AuthService } from './services/auth.service';
@@ -15,9 +15,13 @@ import { LocationListComponent } from './location-list/location-list.component';
 import { LocationDetailComponent } from './location-detail/location-detail.component';
 import { FileUploadModule } from "ng2-file-upload";
 import { ImageUploadModule } from "angular2-image-upload";
-
+import { CommonModule } from '@angular/common';
 import { LocationService } from './services/location.service';
 import { NewLocationComponent } from './new-location/new-location.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -36,9 +40,17 @@ import { NewLocationComponent } from './new-location/new-location.component';
     BrowserModule,
     FileUploadModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatFormFieldModule,
     ImageUploadModule.forRoot(),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+
+
   ],
   providers: [AuthService, IsLoggedInService, LocationService],
   bootstrap: [AppComponent]
