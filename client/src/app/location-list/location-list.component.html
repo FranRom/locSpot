@@ -1,15 +1,18 @@
 <h1> Locations list </h1>
 
-<div class="locations">
-  <div *ngFor="let e of location" class="location">
-
-    <h3> {{ e.title }} </h3>
-    <img [src]="e.picture" />
-    <p> {{ e.city }} </p>
-    <p> {{ e.type }} </p>
-    <p> from {{ e.price }}€ per day </p>
-    <p> available in {{ e.availability }} days </p>
-    <p> {{ e._creator }}</p>
-    <a [routerLink]="[e._id]"> View Details </a>
-  </div>
-</div>
+<ul class="cards">
+  <li *ngFor="let e of location" class="cards__item">
+    <div class="card">
+     <div style="background-image: url({{e.picture[0]}})"></div>
+      <div class="card__content">
+        <div class="card__title">{{ e.title }}</div>
+        <p class="card__text">{{ e.city }}</p>
+        <p> {{ e.type }} </p>
+        <p> from {{ e.price }}€ per day </p>
+        <p> available in {{ e.availability }} days </p>
+        <p> {{ e._creator }}</p>
+        <button [routerLink]="[e._id]" class="btn btn--block card__btn">View</button>
+      </div>
+    </div>
+  </li>
+</ul>

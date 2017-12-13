@@ -1,48 +1,44 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<h1> Add a Location</h1>
-<br>
-<form >
-  <fieldset>
-    <image-upload
-      [url]="'http://localhost:3000/api/location/addPhoto'"
-      [max]="20"
-      [buttonCaption]="'Add Images'"
-      [maxFileSize]="104857600"
-      (uploadFinished)="onUploadFinished($event)"
-      (removed)="onRemoved($event)">
-    </image-upload>
-    <br>
-    <br>
 
+<div class="add-location">
+<h1 style="text-align:center;"> Add Location</h1>
+<br>
+<form>
+  <image-upload [url]="'http://localhost:3000/api/location/addPhoto'" [max]="20" [buttonCaption]="'Add Images'" [maxFileSize]="104857600" (uploadFinished)="onUploadFinished($event)" (removed)="onRemoved($event)" >
+  </image-upload>
+  <br>
+  <br>
+  <div class="form-style-5">
     <label> Title</label>
-    <input type="text" [(ngModel)]="newLocation.title" name="title"/>
+    <br>
+    <input type="text" placeholder="Put it a name!"[(ngModel)]="newLocation.title" name="title" />
     <br><br>
     <label> City </label>
-    <input type="text" [(ngModel)]="newLocation.city" name="city"/>
+    <input type="text" placeholder="Where is it?" [(ngModel)]="newLocation.city" name="city" />
     <br><br>
     <label> Availability </label>
-    <input type="text" [(ngModel)]="newLocation.availability" name="availability"/>
+    <input type="text" placeholder="How many days would be this location available?" [(ngModel)]="newLocation.availability" name="availability" />
     <br><br>
     <label> Price </label>
-    <input type="text" [(ngModel)]="newLocation.price" name="price"/>
-    <br>
-    <br>
-    <h2>Add tags and press enter, your location will be more findable</h2>
+    <input type="text" placeholder="Euros per day" [(ngModel)]="newLocation.price" name="price" />
+  </div>
+  <br>
+  <br>
+  <div class="border">
+    <h3 style="text-align:center;">Add tags and press enter, your location will be more findable</h3>
     <mat-form-field class="tag-list">
-     <mat-chip-list #chipList>
-      <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
-       [removable]="removable" (remove)="remove(tag)">
-        {{tag.name}}
-       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-       <input placeholder="New tag..."
-           [matChipInputFor]="tagList"
-           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-           [matChipInputAddOnBlur]="addOnBlur"
-           (matChipInputTokenEnd)="add($event)" />
-     </mat-chip-list>
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (remove)="remove(tag)">
+          {{tag.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="New tag..." [matChipInputFor]="tagList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+      </mat-chip-list>
     </mat-form-field>
-</fieldset>
+  </div>
 
+  <br>
   <button (click)="submit(newLocation)"> Add Location </button>
 </form>
+<br><br>
+</div>
