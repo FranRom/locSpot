@@ -9,8 +9,9 @@
   <img [src]="location.picture[0]" />
 </section>
 
-<section class="container">
-    <div class="flex3">
+<section class="container flex-container">
+<section class="flex3">
+    <div >
       <h2> {{ location.title}}</h2>
       <h3> {{ location.city }} </h3>
       <p> from {{ location.price }}€ per day </p>
@@ -20,20 +21,21 @@
     <button [routerLink]="['/explore']" class="btn btn--block card__btn">Explore Locations</button>
 </section>
 
- <div class="form-style-6 flex1 fixed">
-    <form>
-      <h1 style="text-align:center, font-size:70px">{{ location.price }}€/day</h1>
+ <section class="form-style-6 flex1">
+    <form style="text-align:center">
+      <h1>{{ location.price }}€/day</h1>
       <br>
       <input [(ngModel)]="mailInfo.date" type="date" placeholder="Date" name="date" />
       <br>
       <input [(ngModel)]="mailInfo.availability" type="text" placeholder="Availability"  name="availability" />
       <br>
-      <button (click)="sendMail(mailInfo)">Send</button>
+      <button class="btn-form" (click)="sendMail(mailInfo)">Make a Reservation</button>
       <br>
       <p>We don't charge you anything yet</p>
     </form>
     <p class="error"> {{ error }} </p>
-  </div>
- </div>
+  </section>
+</section>
+</div>
 
 <!-- <div class="cover"><img [src]="location.picture[0]" /></div> -->
