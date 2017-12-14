@@ -15,6 +15,7 @@ formInfo = {
   lastname:"",
   email:"",
   password:"",
+  about:"",
   city:"",
   phone:""
 
@@ -26,10 +27,10 @@ formInfo = {
 
   signup(formInfo){
     console.log(formInfo)
-    const {username,lastname,email,password,city,phone} = this.formInfo;
+    const {username,lastname,email,password,about,city,phone} = this.formInfo;
     if(username != "" && password != ""){
       console.log(`Signup with ${username} ${password}`)
-      this.auth.signup(username,lastname,email,password,city,phone)
+      this.auth.signup(username,lastname,email,password,about,city,phone)
       .map(user => console.log(user))
       .subscribe();
     } else{

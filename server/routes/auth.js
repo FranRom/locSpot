@@ -6,7 +6,7 @@ const authRoutes = express.Router();
 
 
 authRoutes.post('/signup', (req, res, next) => {
-  const {username, lastname, email, phone, password, city, role} = req.body;
+  const {username, lastname, email, phone, password, about, city, role} = req.body;
 
   if (!username || !password) {
     res.status(400).json({ message: 'Provide username and password' });
@@ -27,6 +27,7 @@ authRoutes.post('/signup', (req, res, next) => {
       username,
       lastname,
       password: hashPass,
+      about,
       email,
       phone,
       city,

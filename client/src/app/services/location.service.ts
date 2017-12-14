@@ -37,8 +37,6 @@ export class LocationService {
   }
 
   sendMail(date,availability) {
-    console.log(date);
-    console.log(availability);
     return this.http.post(`${BASEURL}/email`, {date,availability}, this.mailInfo)
     .map(res => res.json())
 

@@ -38,10 +38,10 @@ export class AuthService {
       return Observable.throw(e.json().message);
     }
 
-    signup(username,lastname,email,password,city,phone) {
+    signup(username,lastname,email,password,about,city,phone) {
       console.log("entrooooooo")
-      console.log(username,lastname,email,password,city,phone)
-      return this.http.post(`${BASEURL}/signup`, {username,lastname,email,password,city,phone}, this.options)
+      console.log(username,lastname,email,password,about,city,phone)
+      return this.http.post(`${BASEURL}/signup`, {username,lastname,email,password,about,city,phone}, this.options)
         .map(res => res.json())
         .map(user => this.emitUserLoginEvent(user))
         .catch(this.handleError);

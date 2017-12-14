@@ -70,7 +70,10 @@ const checkIDParam = (req, res, next) => {
   /* List all Locations */
   router.get('/', (req, res, next) => {
     Location.find()
-      .then(list => res.json(list))
+      .then(list => {
+        forDate = list.reverse();
+        res.json(forDate);
+      })
       .catch(e => res.json(e));
   });
 

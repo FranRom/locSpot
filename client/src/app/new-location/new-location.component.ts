@@ -78,24 +78,26 @@ export class NewLocationComponent implements OnInit {
 // }
 
 onUploadFinished(e){
-  console.log(e.file)
+  //console.log(e.file)
   this.photo[e.file.url] = e.serverResponse._body.slice(1, -1);;
-  console.log("FILE", e.serverResponse._body);
-  console.log("PHOTO", this.photo);
+  //console.log("FILE", e.serverResponse._body);
+  //console.log("PHOTO", this.photo);
+  this.photo.push(e.serverResponse._body.slice(1, -1))
 }
 onRemoved(e){
   delete this.photo[e.file.name];
-  console.log(this.photo);
+  //console.log(this.photo);
 }
 
 submit(newLocation){
   console.log("newLocation: " + newLocation);
   console.log(this.tags);
 
-  const {title,city,availability,price,tags} = this.newLocation;
+  const {title,city,availability,price} = this.newLocation;
   const photo = this.photo;
+  const tags = this.real;
 
-  console.log("this.newlocation: " + this.newLocation)
+  //console.log("this.newlocation: " + this.newLocation)
 
   if(title != "" && city != "" && availability != "" && price != ""){
 
