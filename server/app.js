@@ -56,6 +56,9 @@ app.use('/api/auth', auth);
 app.use('/api/user', user);
 app.use('/api/location', location);
 app.use('/api/review', review);
+app.use(function(req, res) {
+  res.sendfile(__dirname + '/public/index.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

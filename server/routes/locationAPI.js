@@ -77,7 +77,7 @@ const checkIDParam = (req, res, next) => {
   router.post('/addPhoto', upload.single('image'), (req, res, next) => {
   if (req.file) {
     console.log("BACK");
-    console.log("POLLON LOG", req.file.url);
+    console.log(" LOG", req.file.url);
     res.status(200).json(req.file.url);
   } else {
     res.status(500).json("some error");
