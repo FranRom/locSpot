@@ -5,19 +5,22 @@
     <div class="location-thumbnail">
       <!-- <img height="300" [src]="location[0].picture" /> -->
     </div>
+<section class="cover">
+  <img [src]="location.picture[0]" />
+</section>
 
-    <div class="location-info">
-      <div class="cover"><img [src]="location.picture[0]" /></div>
+<section class="container">
+    <div class="flex3">
       <h2> {{ location.title}}</h2>
       <h3> {{ location.city }} </h3>
-      <p> {{ location.type }} </p>
       <p> from {{ location.price }}€ per day </p>
       <p> available in {{ location.availability }} days </p>
     </div>
     <button (click)="deleteLocation(location._id)"> Delete Location </button>
     <button [routerLink]="['/explore']" class="btn btn--block card__btn">Explore Locations</button>
+</section>
 
- <div class="form-style-6 ">
+ <div class="form-style-6 flex1 fixed">
     <form>
       <h1 style="text-align:center, font-size:70px">{{ location.price }}€/day</h1>
       <br>
@@ -32,3 +35,5 @@
     <p class="error"> {{ error }} </p>
   </div>
  </div>
+
+<!-- <div class="cover"><img [src]="location.picture[0]" /></div> -->

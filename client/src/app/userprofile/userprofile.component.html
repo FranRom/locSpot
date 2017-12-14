@@ -7,14 +7,34 @@
 
 <section class="container flex-container">
   <div class="flex1">
-   <img class="img-rad" [src]="user.picture" width='300'/>
-
-    <button (click)="auth.logout().subscribe()"> logout </button>
+   <img class="img-rad" [src]="user.picture" width='250'/>
   </div>
   <div class="flex3">
     <h1> {{ user.username }} {{user.lastname }}</h1>
     <h3> {{ user.city }} </h3>
     <p> {{ user.about }} </p>
+    <br>
+    <button (click)="auth.logout().subscribe()"> logout </button>
   </div>
  </section>
+
+
+   <ul class="cards">
+     <li *ngFor="let e of location" class="cards__item">
+       <div class="card">
+       <div class="card__image" [ngStyle]="{'background-image': 'url(' + e.picture[0] + ')'}"> </div>
+
+         <div class="card__content">
+           <div class="card__title">{{ e.title }}</div>
+           <h3 class="card__text">{{ e.city }}</h3>
+           from {{ e.price }}€ per day
+            <p> available in {{ e.availability }} days </p>
+            <p class="tag">  Tags: {{e.tags}}</p>
+            {{ e._creator }}
+           <button [routerLink]="[e._id]" class="btn btn--block card__btn">View</button>
+         </div>
+       </div>
+     </li>
+   </ul>
+
 </div>
