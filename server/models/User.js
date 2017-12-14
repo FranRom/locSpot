@@ -9,7 +9,7 @@ const userSchema = new Schema({
   password: { type: String, required: [true, 'Password is required'] },
   city: { type: String, required: [true, 'City is required'] },
   about: { type: String },
-  picture: { type: String, default:"https://s3.eu-west-2.amazonaws.com/lspot/cat-profile.png"},
+  picture: { type: String, default:"http://res.cloudinary.com/lspot/image/upload/v1513263415/Andrea_Locator_zxetea.jpg"},
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],
   locations: [{type:Schema.Types.ObjectId, ref:'Location'}],
   role: {type: String, enum: ['Locator', 'Renter']},

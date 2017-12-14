@@ -1,14 +1,13 @@
 
   <h1> Location details </h1>
-  <a [routerLink]="['/explore']"> Back to Explore</a>
 
-  <div *ngIf="location">
+  <div *ngIf="location" >
     <div class="location-thumbnail">
       <!-- <img height="300" [src]="location[0].picture" /> -->
     </div>
 
     <div class="location-info">
-      <img [src]="location.picture" />
+      <div class="cover"><img [src]="location.picture[0]" /></div>
       <h2> {{ location.title}}</h2>
       <h3> {{ location.city }} </h3>
       <p> {{ location.type }} </p>
@@ -16,8 +15,9 @@
       <p> available in {{ location.availability }} days </p>
     </div>
     <button (click)="deleteLocation(location._id)"> Delete Location </button>
+    <button [routerLink]="['/explore']" class="btn btn--block card__btn">Explore Locations</button>
 
- <div class="form-style-6">
+ <div class="form-style-6 ">
     <form>
       <h1 style="text-align:center, font-size:70px">{{ location.price }}€/day</h1>
       <br>

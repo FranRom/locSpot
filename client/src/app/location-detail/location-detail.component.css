@@ -1,3 +1,17 @@
+.fixed {
+  position: fixed;
+  right: 24px;
+  top: 83px;
+}
+
+.container {
+  padding:32px;
+}
+
+.cover {
+  text-align: center;
+}
+
 
 .form-style-6{
     max-width: 400px;

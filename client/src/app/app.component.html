@@ -1,17 +1,27 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <header>
-  <a href="#" id="logo"></a>
-  <nav>
-    <a href="#" id="menu-icon"></a>
+<a href="#" id="logo"></a>
+ <nav>
+  <a href="#" id="menu-icon"></a>
+   <div *ngIf="!auth.user">
+    <ul>
+      <li><a [routerLink]="['/']">Home</a></li>
+      <li><a [routerLink]="['/explore']">Explore</a></li>
+      <li><a [routerLink]="['/login']">Log in</a></li>
+      <li><a [routerLink]="['/signup']">Get Started</a></li>
+    </ul>
+   </div>
+
+   <div *ngIf="auth.user">
     <ul>
       <li><a [routerLink]="['/']">Home</a></li>
       <li><a [routerLink]="['/explore']">Explore</a></li>
       <li><a [routerLink]="['/newlocation']">Add Location</a></li>
-      <li><a [routerLink]="['/user']">User Profile</a></li>
-      <li><a [routerLink]="['/login']">Log in</a></li>
-      <li><a [routerLink]="['/signup']">Get Started</a></li>
+      <li><a [routerLink]="['/user']">Profile</a></li>
     </ul>
+   </div>
+
   </nav>
 </header>
 

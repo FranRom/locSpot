@@ -3,7 +3,10 @@
 <ul class="cards">
   <li *ngFor="let e of location" class="cards__item">
     <div class="card">
-     <div style="background-image: url({{e.picture[0]}})"></div>
+
+
+    <div class="card__image" [ngStyle]="{'background-image': 'url(' + e.picture[0] + ')'}"> </div>
+    
       <div class="card__content">
         <div class="card__title">{{ e.title }}</div>
         <p class="card__text">{{ e.city }}</p>
@@ -16,3 +19,7 @@
     </div>
   </li>
 </ul>
+
+
+
+<!-- <div class="card__image" [ngStyle]="{'background-image': 'url({{e.picture[0]}})'}"></div> -->

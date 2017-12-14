@@ -31,7 +31,7 @@ export class NewLocationComponent implements OnInit {
     let input = event.input;
     let value = event.value;
 
-    // Add our fruit
+    // Add our tag
     if ((value || '').trim()) {
       this.tags.push({ name: value.trim() });
       this.real.push(value.trim());
@@ -52,7 +52,6 @@ export class NewLocationComponent implements OnInit {
       this.tags.splice(index, 1);
     }
   }
-
 
   uploader: FileUploader = new FileUploader({
     url: 'http://localhost:3000/api/location/addPhoto'

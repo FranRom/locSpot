@@ -7,12 +7,12 @@ const User = require('../models/User');
 const multer  = require('multer');
 const multerS3 = require('multer-s3');
 const aws = require('aws-sdk');
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+// const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
+// const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 const nodemailer = require('nodemailer');
 
-var cloudinary = require('cloudinary');
-var cloudinaryStorage = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
@@ -35,6 +35,7 @@ var storage = cloudinaryStorage({
 
 var upload = multer({ storage: storage });
 
+//A W S
 // aws.config.update({
 //   secretAccessKey: AWS_SECRET_ACCESS_KEY,
 //   accessKeyId: AWS_ACCESS_KEY_ID,
