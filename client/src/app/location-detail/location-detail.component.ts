@@ -9,6 +9,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class LocationDetailComponent implements OnInit {
 
+mailInfo ={
+  date:"",
+  availability:""
+}
+
   location:any;
   constructor(
     public router:Router,
@@ -25,6 +30,17 @@ export class LocationDetailComponent implements OnInit {
     .subscribe(() =>{this.router.navigate(['explore'])
   });
   }
+
+
+  sendMail(mailInfo) {
+  console.log(mailInfo)
+  const {date,availability} = this.mailInfo;
+  console.log(this.mailInfo);
+  this.locationService.sendMail(date,availability)
+  .map(mail => console.log(location))
+  .subscribe();
+  }
+
 
   ngOnInit() {
   }

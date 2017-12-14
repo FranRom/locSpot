@@ -15,6 +15,7 @@ const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 const multer  = require('multer');
 const aws = require('aws-sdk');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const multerS3 = require('multer-s3');

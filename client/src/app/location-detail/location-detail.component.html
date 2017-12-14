@@ -19,13 +19,13 @@
 
  <div class="form-style-6">
     <form>
-      <h1 style="text-align:center, font-size:70px">{{ location.price }}€/day</h1> 
+      <h1 style="text-align:center, font-size:70px">{{ location.price }}€/day</h1>
       <br>
-      <input type="date" placeholder="Date"  name="date" />
+      <input [(ngModel)]="mailInfo.date" type="date" placeholder="Date" name="date" />
       <br>
-      <input type="text" placeholder="Availability"  name="availability" />
+      <input [(ngModel)]="mailInfo.availability" type="text" placeholder="Availability"  name="availability" />
       <br>
-      <button>Send</button>
+      <button (click)="sendMail(mailInfo)">Send</button>
       <br>
       <p>We don't charge you anything yet</p>
     </form>

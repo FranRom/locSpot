@@ -79,7 +79,8 @@ export class NewLocationComponent implements OnInit {
 // }
 
 onUploadFinished(e){
-  this.photo[e.file.name] = e.serverResponse._body.slice(1, -1);;
+  console.log(e.file)
+  this.photo[e.file.url] = e.serverResponse._body.slice(1, -1);;
   console.log("FILE", e.serverResponse._body);
   console.log("PHOTO", this.photo);
 }
@@ -91,7 +92,7 @@ onRemoved(e){
 submit(newLocation){
   console.log("newLocation: " + newLocation);
   console.log(this.tags);
-  
+
   const {title,city,availability,price,tags} = this.newLocation;
   const photo = this.photo;
 

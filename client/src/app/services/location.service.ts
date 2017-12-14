@@ -10,6 +10,8 @@ const BASEURL = environment.BASEURL + "/api/location";
 
 @Injectable()
 export class LocationService {
+
+ private mailInfo:object;
  options = {withCredentials:true};
  constructor(private http: Http) {}
 
@@ -33,4 +35,12 @@ export class LocationService {
    .map(res => res.json());
 
   }
+
+  sendMail(date,availability) {
+    console.log(date);
+    console.log(availability);
+    return this.http.post(`${BASEURL}/email`, {date,availability}, this.mailInfo)
+    .map(res => res.json())
+
+    }
 }
