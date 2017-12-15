@@ -11,6 +11,7 @@ const locationSchema = new Schema({
   price: { type: String, required: [true, 'Price is required']},
   type: {type: String, enum: ['Inside', 'Outside']},
   activity: {type: String, enum: ['Photo', 'Recording', 'Event']},
+  about: [{ type: String }],
   reviews: [{type:Schema.Types.ObjectId, ref:'Review'}],
   _creator: [{type:Schema.Types.ObjectId, ref:'User'}],
 }, {

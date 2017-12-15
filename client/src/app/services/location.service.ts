@@ -30,8 +30,8 @@ export class LocationService {
    .map(res => res.json());
   }
 
-  newLocation(title,city,availability,price,tags,photo){
-   return this.http.post(`${BASEURL}/new`, {title,city,availability,price,tags,photo}, this.options)
+  newLocation(title,city,availability,price,about,tags,photo){
+   return this.http.post(`${BASEURL}/new`, {title,city,availability,price,about,tags,photo}, this.options)
    .map(res => res.json());
 
   }

@@ -96,6 +96,7 @@ const checkIDParam = (req, res, next) => {
       city: req.body.city,
       availability: req.body.availability,
       price: req.body.price,
+      about: req.body.about,
       tags: req.body.tags,
       picture: req.body.photo
     });

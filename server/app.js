@@ -45,7 +45,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'Fockin awesome project brah',
+  secret: 'Awesome project brah',
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })

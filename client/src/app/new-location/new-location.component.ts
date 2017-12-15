@@ -62,6 +62,7 @@ export class NewLocationComponent implements OnInit {
     city:"",
     availability:"",
     price:"",
+    about:"",
     tags:[]
   }
 
@@ -93,7 +94,7 @@ submit(newLocation){
   console.log("newLocation: " + newLocation);
   console.log(this.tags);
 
-  const {title,city,availability,price} = this.newLocation;
+  const {title,city,availability,price,about} = this.newLocation;
   const photo = this.photo;
   const tags = this.real;
 
@@ -101,7 +102,7 @@ submit(newLocation){
 
   if(title != "" && city != "" && availability != "" && price != ""){
 
-    this.location.newLocation(title,city,availability,price,tags,photo)
+    this.location.newLocation(title,city,availability,price,about,tags,photo)
     .map(location => console.log(location))
     .subscribe();
     this.photo=[];

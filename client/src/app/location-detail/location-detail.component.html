@@ -1,3 +1,6 @@
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
   <h1> Location details </h1>
 
@@ -11,14 +14,16 @@
 
 <section class="container flex-container">
 <section class="flex3">
-    <div >
-      <h2> {{ location.title}}</h2>
-      <h3> {{ location.city }} </h3>
-      <p> from {{ location.price }}€ per day </p>
-      <p> available in {{ location.availability }} days </p>
+    <div>
+      <h1>{{location.title}}</h1>
+      <h2 style="color:#434343;">{{location.city }}</h2>
+
+      <p style="color:#646464;"><i class="fa fa-calendar" aria-hidden="true"> </i>  Available in {{ location.availability }} days</p>
+      <p style="color:#797979;">{{location.about}}</p>
+      <br><br><br><br>
     </div>
     <button (click)="deleteLocation(location._id)"> Delete Location </button>
-    <button [routerLink]="['/explore']" class="btn btn--block card__btn">Explore Locations</button>
+    <button [routerLink]="['/explore']" class="btn btn--block card__btn">More Locations</button>
 </section>
 
  <section class="form-style-6 flex1">
@@ -28,10 +33,8 @@
       <input [(ngModel)]="mailInfo.date" type="date" placeholder="Date" name="date" />
       <br>
       <input [(ngModel)]="mailInfo.availability" type="text" placeholder="Availability"  name="availability" />
-      <br>
+      <br><br>
       <button class="btn-form" (click)="sendMail(mailInfo)">Make a Reservation</button>
-      <br>
-      <p>We don't charge you anything yet</p>
     </form>
     <p class="error"> {{ error }} </p>
   </section>
