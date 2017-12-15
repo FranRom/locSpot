@@ -1,0 +1,21 @@
+html {
+  background: url(http://res.cloudinary.com/lspot/image/upload/v1513304207/Background_fifitv.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.bg {
+ min-height: 650px;
+ padding: 250px 0;
+ text-align: center !important;
+
+}
+
+
+
+h1 {
+  color: #ffffff !important;
+}
